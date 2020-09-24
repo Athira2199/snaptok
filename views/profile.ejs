@@ -108,9 +108,9 @@
                 </div>
                 <div class="modal-body">
                   <form method="POST" action="/upload" enctype="multipart/form-data">
-                        <input tye="text" class="form-control" placeholder="Title" name="title"><br>
-                        <input tye="text" class="form-control" placeholder="Description"   name="description"><br>
-                        <input type="file" name="video"><br>
+                        <input tye="text" class="form-control" placeholder="Title" name="title" required><br>
+                        <input tye="text" class="form-control" placeholder="Description" name="description" required><br>
+                        <input type="file" name="video" required class="form-control"><br>
                         <input type="submit" class="btn btn-block" value="Add"></button>
                     </form>
                 </div>
