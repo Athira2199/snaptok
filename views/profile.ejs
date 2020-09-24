@@ -8,6 +8,12 @@
         <link rel="stylesheet" href="/css/profile.css">
     </head>
     <body>
+        <% if(message != '') { %>
+            <script>
+                alert("<%= message %>")
+                window.location.href = '/profile'
+            </script>
+        <% } %>
         <div class="container emp-profile">
             <form method="post">
                 <div class="row">
@@ -51,13 +57,13 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form>
-                      <input type="number" class="form-control" placeholder="Age" min=1><br>
-                      <input tye="text" class="form-control" placeholder="Bio">
-                  </form>
+                  <form method="POST" action="/profile/edit">
+                      <input type="number" class="form-control" placeholder="Age" min=1 value="<%= user.age %>" name="age"><br>
+                      <input tye="text" class="form-control" placeholder="Bio" value="<%= user.bio  %>" name="bio">
+                      <input type="submit" class="btn btn-block" value="Save"></button>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-block">Save changes</button>
                 </div>
               </div>
             </div>
