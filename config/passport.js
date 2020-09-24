@@ -13,6 +13,10 @@ module.exports={
                         if(user[0].password == password){
                             return done(null,user[0])
                         }
+                        else{
+                            console.log("error")
+                            return done(null,false)
+                        }
                     }
                     else{
                         console.log("error")

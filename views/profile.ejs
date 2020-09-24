@@ -15,7 +15,6 @@
             </script>
         <% } %>
         <div class="container emp-profile">
-            <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -34,7 +33,7 @@
                                     <p class="proile-rating">Age :  <%= user.age %> <span></span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Videos</a>
                                 </li>
                             </ul>
                         </div>
@@ -42,10 +41,40 @@
                     <div class="col-md-2">
                         <button type="button" class="btn btn-block" data-toggle="modal" data-target="#editModal">
                             Edit
-                          </button>
+                        </button>
+                    </div>
+                </div> 
+                <div class="row">
+                    <br>
+                    <div class="col-md-4">
+                        <a href="/auth/logout">
+                            <button type="button" class="btn btn-block" >
+                                Logout
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <% if (videos.length == 0) { %>
+                            <p>Looks like you have not uploaded anything !</p>
+                        <% } %>
+                        <div class="card-columns">
+                            <% for(var i =0; i < videos.length; i++) { %>
+                                <div class="card">
+                                    <video controls width="100%">
+                                        <source src="/videos/<%= videos[i].videoLink %>">
+                                    </video>
+                                    <div class="card-block">
+                                        <h4 class="card-title"><%= videos[i].title %></h4>
+                                        <p class="card-text"><%= videos[i].description %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                        <button type="button" class="btn btn-block" data-toggle="modal" data-target="#videoModal">
+                            Add Videos
+                        </button>
                     </div>
                 </div>
-            </form>           
         </div>
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -67,6 +96,28 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
+        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="videoModalLabel">Edit Profile</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="POST" action="/upload" enctype="multipart/form-data">
+                        <input tye="text" class="form-control" placeholder="Title" name="title"><br>
+                        <input tye="text" class="form-control" placeholder="Description"   name="description"><br>
+                        <input type="file" name="video"><br>
+                        <input type="submit" class="btn btn-block" value="Add"></button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div>
+            </div>
+        </div>
     </body>
 </html>

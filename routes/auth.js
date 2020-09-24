@@ -13,6 +13,7 @@ router.post('/signup',(req,res)=>{
                 response(s)
                     .then(()=>{
                         console.log("done")
+                        res.redirect('/?message=please login to continue')
                     })
             }
             else{
@@ -29,10 +30,14 @@ router.post('/login',(req,res,next)=>{
     console.log(req.body)
     passport.authenticate('local',{
         successRedirect:'/profile',
-        failureRedirect:'/',
+        failureRedirect:'/?message=invalid credentials',
         failureFlash:true,
         session: true
     })(req,res,next)
 })
 
+router.get('/logout',(req,res)=>{
+    req.logout()
+    res.redirect('/?message=logged out successfully')
+})
 module.exports = router
