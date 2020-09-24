@@ -1,16 +1,18 @@
 const mysql=require('mysql');
-
+var con;
+var sessionStore ;
 function connectDB(){
-    con=mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"",
-        database:"snaptok"
-    });
-    con.connect(function(err){
-        if(err) throw err;
-        console.log("connected");
-    })
+    con= mysql.createPool({
+        canRetry: true,
+        database: 'snaptok',
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        connectionLimit: 100
+     });
+     
+   
+   
 }
 
 function response(s){
@@ -22,4 +24,4 @@ function response(s){
     })
 }
 
-module.exports = {connectDB,response}
+module.exports = {connectDB,response,con}

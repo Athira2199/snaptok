@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {response} = require('../config/db')
+const passport=require('passport');
 
 router.post('/signup',(req,res)=>{
     s =  `SELECT * FROM users WHERE email='${req.body.email}'`
@@ -24,6 +25,14 @@ router.post('/signup',(req,res)=>{
         })
 })
 
-
+router.post('/login',(req,res,next)=>{
+    console.log(req.body)
+    passport.authenticate('local',{
+        successRedirect:'/profile',
+        failureRedirect:'/',
+        failureFlash:true,
+        session: true
+    })(req,res,next)
+})
 
 module.exports = router

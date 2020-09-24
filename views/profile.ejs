@@ -1,7 +1,9 @@
 <html>
     <head>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="/css/profile.css">
     </head>
@@ -17,12 +19,13 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                       
+                                       <%= user.name %>
                                     </h5>
                                     <h6>
-                                       
+                                        <%= user.bio  %>
                                     </h6>
-                                    <p class="proile-rating">Mail : <span></span></p>
+                                    <p class="proile-rating">Mail :  <%= user.email %> <span></span></p>
+                                    <p class="proile-rating">Age :  <%= user.age %> <span></span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -31,12 +34,33 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        <button type="button" class="btn btn-block" data-toggle="modal" data-target="#editModal">
+                            Edit
+                          </button>
                     </div>
                 </div>
             </form>           
         </div>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editModalLabel">Edit Profile</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                      <input type="number" class="form-control" placeholder="Age" min=1><br>
+                      <input tye="text" class="form-control" placeholder="Bio">
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-block">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </body>
 </html>
-
-
